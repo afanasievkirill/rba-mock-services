@@ -1,18 +1,19 @@
 version: '3'
 services:
-  rba-api-call-touch:
+  api-call-touch:
     build: ./apps/call-touch/
-    container_name: rba-api-call-touch
+    container_name: api-call-touch
     restart: always
     user: node
     ports:
       - 3000:3000
-    depends_on: rba-mongo-call-touch
+    depends_on: 
+      - mongo-call-touch
     volumes:
       - ./.env:/opt/app/.env
-  rba-mongo-call-touch:
+  mongo-call-touch:
     image: mongo:4.4.4
-    container_name: rba-mongo-call-touch
+    container_name: mongo-call-touch
     environment:
       - MONGO_INITDB_ROOT_USERNAME=admin
       - MONGO_INITDB_ROOT_PASSWORD=admin
